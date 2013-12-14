@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -19,6 +20,7 @@ var hat_content='';
 var xmas_content='';
 var dic_content='';
 var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
 
 function displayContent(json) {
             var len = json.feed.entry.length;
@@ -26,22 +28,22 @@ function displayContent(json) {
             var hed = json.feed.entry[i].gsx$hed.$t;
             var url = json.feed.entry[i].gsx$url.$t;
             var o = new Date(json.feed.entry[i].gsx$time.$t);
-            var time = weekday[o.getDay()];
+            var time = weekday[o.getDay()] + ", " + months[o.getMonth()] + " " + o.getDate();
             var brief = json.feed.entry[i].gsx$brief.$t;
             var hathed = json.feed.entry[i].gsx$hathed.$t;
             var haturl = json.feed.entry[i].gsx$haturl.$t;
             var h = new Date(json.feed.entry[i].gsx$hattime.$t);
-            var hattime = weekday[h.getDay()];
+            var hattime = weekday[h.getDay()] + ", " + months[h.getMonth()] + " " + h.getDate();
             var hatbrief = json.feed.entry[i].gsx$hatbrief.$t;
             var xmashed = json.feed.entry[i].gsx$xmashed.$t;
             var xmasurl = json.feed.entry[i].gsx$xmasurl.$t;
             var x = new Date(json.feed.entry[i].gsx$xmastime.$t);
-            var xmastime = weekday[x.getDay()]; 
+            var xmastime = weekday[x.getDay()] + ", " + months[x.getMonth()] + " " + x.getDate(); 
             var xmasbrief = json.feed.entry[i].gsx$xmasbrief.$t;
             var diched = json.feed.entry[i].gsx$diched.$t;
             var dicurl = json.feed.entry[i].gsx$dicurl.$t;
             var d = new Date (json.feed.entry[i].gsx$dictime.$t);
-            var dictime = weekday[d.getDay()];
+            var dictime = weekday[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
             var dicbrief = json.feed.entry[i].gsx$dicbrief.$t;
             
 	    if (hed != "" && hed != null) {
