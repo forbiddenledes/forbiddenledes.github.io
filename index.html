@@ -5,14 +5,18 @@
       <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-<!-- bootstrap -->
+<!-- styles n scripts -->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 <!-- the stark fist of faviconing -->
 <link rel="shortcut icon" href="http://www.codywinchester.com/favicon.ico">
 
+<style>
+	#toTop { display:none; position:fixed; bottom:-10px; right:10px; font-size:200%; cursor:hand; cursor:pointer; opacity: 0.4; color:#39c;}
+</style>
 
       <script>
 
@@ -124,6 +128,31 @@ document.getElementById('results').innerHTML =
    	
    	</div>
    </div>
+
+<h1 id="toTop"><i class="fa fa-arrow-circle-up"></i></h1>
+   
+<script>
+   
+   $(window).scroll(function() {
+    if($(this).scrollTop() != 0) {
+$('#toTop').fadeIn();
+    } else {
+$('#toTop').fadeOut();
+    }
+});
+
+$('#toTop').click(function() {
+    $('body,html').animate({scrollTop:0},1000);
+    });
+
+$('#toTop').hover(
+      function() {
+    $( this ).fadeTo( 'fast', 1.0 );
+  }, function() {
+    $( this ).fadeTo( 'fast', 0.4 );
+  });
+  
+</script>
    
 <script src="http://spreadsheets.google.com/feeds/list/0Ag4MM37uq7FmdGpoX18zR0JIel96YkVpSGNycTZwenc/od6/public/values?alt=json-in-script&amp;callback=displayContent" type="text/javascript"></script>
 
