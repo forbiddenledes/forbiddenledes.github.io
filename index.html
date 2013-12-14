@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -7,6 +8,7 @@
 <!-- bootstrap -->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="date.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
       <script>
@@ -17,49 +19,53 @@ var official_content='';
 var hat_content='';
 var xmas_content='';
 var dic_content='';
+var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 function displayContent(json) {
             var len = json.feed.entry.length;
      for (var i=0; i<len; i++) {        
             var hed = json.feed.entry[i].gsx$hed.$t;
             var url = json.feed.entry[i].gsx$url.$t;
-            var time = json.feed.entry[i].gsx$time.$t;
+            var o = new Date(json.feed.entry[i].gsx$time.$t);
+            var time = weekday[o.getDay()];
             var brief = json.feed.entry[i].gsx$brief.$t;
             var hathed = json.feed.entry[i].gsx$hathed.$t;
             var haturl = json.feed.entry[i].gsx$haturl.$t;
-            var hattime = json.feed.entry[i].gsx$hattime.$t;
+            var h = new Date(json.feed.entry[i].gsx$hattime.$t);
+            var hattime = weekday[h.getDay()];
             var hatbrief = json.feed.entry[i].gsx$hatbrief.$t;
             var xmashed = json.feed.entry[i].gsx$xmashed.$t;
             var xmasurl = json.feed.entry[i].gsx$xmasurl.$t;
-            var xmastime = json.feed.entry[i].gsx$xmastime.$t;
+            var x = new Date(json.feed.entry[i].gsx$xmastime.$t);
+            var xmastime = weekday[x.getDay()]; 
             var xmasbrief = json.feed.entry[i].gsx$xmasbrief.$t;
             var diched = json.feed.entry[i].gsx$diched.$t;
             var dicurl = json.feed.entry[i].gsx$dicurl.$t;
-            var dictime = json.feed.entry[i].gsx$dictime.$t;
+            var d = new Date (json.feed.entry[i].gsx$dictime.$t);
+            var dictime = weekday[d.getDay()];
             var dicbrief = json.feed.entry[i].gsx$dicbrief.$t;
             
 	    if (hed != "" && hed != null) {
             official_content += [
-            '<tr><td><a href="' + url + '" target="_blank"><em><strong>' + hed + '</strong></em></a></td><td>' + brief + '</td><td>' + time + '</td></tr>'].join('')
+            '<tr><td><a href="' + url + '" target="_blank"><strong>' + hed + '</strong></a></td><td>' + brief + '</td><td><em>' + time + '</em></td></tr>'].join('')
             }
             
             if (hathed != "" && hathed != null) {
             hat_content += [
-            '<tr><td><a href="' + haturl + '" target="_blank"><em><strong>' + hathed + '</strong></em></a></td><td>' + hatbrief + '</td><td>' + hattime + '</td></tr>'].join('')
+            '<tr><td><a href="' + haturl + '" target="_blank"><strong>' + hathed + '</strong></a></td><td>' + hatbrief + '</td><td><em>' + hattime + '</em></td></tr>'].join('')
             }
             
             if (xmashed != "" && xmashed != null) {
             xmas_content += [
-            '<tr><td><a href="' + xmasurl + '" target="_blank"><em><strong>' + xmashed + '</strong></em></a></td><td>' + xmasbrief + '</td><td>' + xmastime + '</td></tr>'].join('')
+            '<tr><td><a href="' + xmasurl + '" target="_blank"><strong>' + xmashed + '</strong></a></td><td>' + xmasbrief + '</td><td><em>' + xmastime + '</em></td></tr>'].join('')
             }
             
             if (diched != "" && diched != null) {
             dic_content += [
-            '<tr><td><a href="' + dicurl + '" target="_blank"><em><strong>' + diched + '</strong></em></a></td><td>' + dicbrief + '</td><td>' + dictime + '</td></tr>'].join('')
+            '<tr><td><a href="' + dicurl + '" target="_blank"><strong>' + diched + '</strong></a></td><td>' + dicbrief + '</td><td><em>' + dictime + '</em></td></tr>'].join('')
             }            
             
             }                                      
-
 
 document.getElementById('results').innerHTML = 
 '<table class="table">' + official_content + hat_content + xmas_content + dic_content + '</table>'
@@ -77,7 +83,7 @@ document.getElementById('results').innerHTML =
    <div class="col-md-10 col-md-offset-1">
    
       <h1><strong>Forbidden Ledes</strong></h1>
-<p><em>Scanning Google News for clichés. <a href="mailto:cjwinchester@gmail.com">Suggestions?</a></em></p>
+<p><em>Scanning Google News for clich&eacute;s. <a href="mailto:cjwinchester@gmail.com">Suggestions?</a></em></p>
 <hr/>
          <span class="label label-danger">christmas came early</span>
    	<span class="label label-danger">wears many hats</span>
