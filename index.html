@@ -18,10 +18,11 @@ var hat_content='';
 var xmas_content='';
 var dic_content='';
 var many_content='';
+var pl_content='';
 
 var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
-
+     
 function displayContent(json) {
             var len = json.feed.entry.length;
      for (var i=0; i<len; i++) {        
@@ -50,8 +51,13 @@ function displayContent(json) {
             var m = new Date (json.feed.entry[i].gsx$manytime.$t);
             var manytime = weekday[m.getDay()] + ", " + months[m.getMonth()] + " " + m.getDate();
             var manybrief = json.feed.entry[i].gsx$manybrief.$t;
-            
-	    if (hed != "" && hed != null) {
+            var plhed = json.feed.entry[i].gsx$plhed.$t;
+            var plurl = json.feed.entry[i].gsx$plurl.$t;
+            var p = new Date (json.feed.entry[i].gsx$pltime.$t);
+            var pltime = weekday[p.getDay()] + ", " + months[p.getMonth()] + " " + p.getDate();
+            var plbrief = json.feed.entry[i].gsx$plbrief.$t;            
+
+            if (hed != "" && hed != null) {
             official_content += [
             '<tr><td><a href="' + url + '" target="_blank"><strong>' + hed + '</strong></a></td><td>' + brief + '</td><td><em>' + time + '</em></td></tr>'].join('')
             }
@@ -75,11 +81,16 @@ function displayContent(json) {
             many_content += [
             '<tr><td><a href="' + manyurl + '" target="_blank"><strong>' + manyhed + '</strong></a></td><td>' + manybrief + '</td><td><em>' + manytime + '</em></td></tr>'].join('')
             }
+
+            if (plhed != "" && plhed != null) {
+            pl_content += [
+            '<tr><td><a href="' + plurl + '" target="_blank"><strong>' + plhed + '</strong></a></td><td>' + plbrief + '</td><td><em>' + pltime + '</em></td></tr>'].join('')
+            }
             
             }                                      
 
 document.getElementById('results').innerHTML = 
-'<table class="table">' + official_content + hat_content + xmas_content + dic_content + many_content + '</table>'
+'<table class="table">' + official_content + hat_content + xmas_content + dic_content + many_content + pl_content + '</table>'
 
 }
             
@@ -95,12 +106,16 @@ document.getElementById('results').innerHTML =
       <h1><strong>Forbidden Ledes</strong></h1>
 <p><em>Scanning Google News for clich&eacute;s. <a href="mailto:cjwinchester@gmail.com">Suggestions?</a></em></p>
 <hr/>
-         <span class="label label-danger">christmas came early</span>
+    
+    <div id="labels"></div>
+    <span class="label label-danger">christmas came early</span>
    	<span class="label label-danger">wears many hats</span>
    	<span class="label label-danger">it's official</span>
    	<span class="label label-danger">the dictionary defines</span>
    	<span class="label label-danger">many things to many people</span>
-   <div id="results" style="padding-top:20px;"></div>
+   	<span class="label label-danger">like the plague</span>
+
+    <div id="results" style="padding-top:20px;"></div>
    	
    	</div>
    </div>
