@@ -19,6 +19,8 @@ var official_content='';
 var hat_content='';
 var xmas_content='';
 var dic_content='';
+var many_content='';
+
 var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
 
@@ -45,6 +47,11 @@ function displayContent(json) {
             var d = new Date (json.feed.entry[i].gsx$dictime.$t);
             var dictime = weekday[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate();
             var dicbrief = json.feed.entry[i].gsx$dicbrief.$t;
+            var manyhed = json.feed.entry[i].gsx$manyhed.$t;
+            var manyurl = json.feed.entry[i].gsx$manyurl.$t;
+            var m = new Date (json.feed.entry[i].gsx$manytime.$t);
+            var manytime = weekday[m.getDay()] + ", " + months[m.getMonth()] + " " + m.getDate();
+            var manybrief = json.feed.entry[i].gsx$manybrief.$t;
             
 	    if (hed != "" && hed != null) {
             official_content += [
@@ -65,11 +72,16 @@ function displayContent(json) {
             dic_content += [
             '<tr><td><a href="' + dicurl + '" target="_blank"><strong>' + diched + '</strong></a></td><td>' + dicbrief + '</td><td><em>' + dictime + '</em></td></tr>'].join('')
             }            
+
+            if (manyhed != "" && manyhed != null) {
+            many_content += [
+            '<tr><td><a href="' + manyurl + '" target="_blank"><strong>' + manyhed + '</strong></a></td><td>' + manybrief + '</td><td><em>' + manytime + '</em></td></tr>'].join('')
+            }
             
             }                                      
 
 document.getElementById('results').innerHTML = 
-'<table class="table">' + official_content + hat_content + xmas_content + dic_content + '</table>'
+'<table class="table">' + official_content + hat_content + xmas_content + dic_content + many_content + '</table>'
 
 }
             
@@ -90,7 +102,7 @@ document.getElementById('results').innerHTML =
    	<span class="label label-danger">wears many hats</span>
    	<span class="label label-danger">it's official</span>
    	<span class="label label-danger">the dictionary defines</span>
-
+   	<span class="label label-danger">many things to many people</span>
    <div id="results" style="padding-top:20px;"></div>
    	
    	</div>
