@@ -28,6 +28,7 @@ var xmas_content='';
 var dic_content='';
 var many_content='';
 var pl_content='';
+var come_content='';
 
 var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
@@ -65,7 +66,12 @@ function displayContent(json) {
             var p = new Date (json.feed.entry[i].gsx$pltime.$t);
             var pltime = weekday[p.getDay()] + ", " + months[p.getMonth()] + " " + p.getDate();
             var plbrief = json.feed.entry[i].gsx$plbrief.$t;            
-
+            var comehed = json.feed.entry[i].gsx$comehed.$t;
+            var comeurl = json.feed.entry[i].gsx$comeurl.$t;
+            var c = new Date (json.feed.entry[i].gsx$cometime.$t);
+            var cometime = weekday[c.getDay()] + ", " + months[c.getMonth()] + " " + c.getDate();
+            var comebrief = json.feed.entry[i].gsx$comebrief.$t;
+            
             if (hed != "" && hed != null) {
             official_content += [
             '<tr><td><a href="' + url + '" target="_blank"><strong>' + hed + '</strong></a></td><td>' + brief + '</td><td><em>' + time + '</em></td></tr>'].join('')
@@ -96,10 +102,14 @@ function displayContent(json) {
             '<tr><td><a href="' + plurl + '" target="_blank"><strong>' + plhed + '</strong></a></td><td>' + plbrief + '</td><td><em>' + pltime + '</em></td></tr>'].join('')
             }
             
+            if (comehed != "" && comehed != null) {
+            come_content += [
+            '<tr><td><a href="' + comeurl + '" target="_blank"><strong>' + comehed + '</strong></a></td><td>' + comebrief + '</td><td><em>' + cometime + '</em></td></tr>'].join('')
+            }            
             }                                      
 
 document.getElementById('results').innerHTML = 
-'<table class="table">' + official_content + hat_content + xmas_content + dic_content + many_content + pl_content + '</table>'
+'<table class="table">' + official_content + hat_content + xmas_content + dic_content + many_content + pl_content + come_content + '</table>'
 
 }
             
@@ -123,7 +133,7 @@ document.getElementById('results').innerHTML =
    	<span class="label label-danger">the dictionary defines</span>
    	<span class="label label-danger">many things to many people</span>
    	<span class="label label-danger">like the plague</span>
-
+   	<span class="label label-danger">don't call it a comeback</span>
     <div id="results" style="padding-top:20px;"></div>
    	
    	</div>
