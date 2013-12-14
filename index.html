@@ -44,22 +44,22 @@ function displayContent(json) {
             var dictime = weekday[d.getDay()];
             var dicbrief = json.feed.entry[i].gsx$dicbrief.$t;
             
-	    if (hed != "" || hed != null) {
+	    if (hed != "" && hed != null) {
             official_content += [
             '<tr><td><a href="' + url + '" target="_blank"><strong>' + hed + '</strong></a></td><td>' + brief + '</td><td><em>' + time + '</em></td></tr>'].join('')
             }
             
-            if (hathed != "" || hathed != null) {
+            if (hathed != "" && hathed != null) {
             hat_content += [
             '<tr><td><a href="' + haturl + '" target="_blank"><strong>' + hathed + '</strong></a></td><td>' + hatbrief + '</td><td><em>' + hattime + '</em></td></tr>'].join('')
             }
             
-            if (xmashed != "" || xmashed != null) {
+            if (xmashed != "" && xmashed != null) {
             xmas_content += [
             '<tr><td><a href="' + xmasurl + '" target="_blank"><strong>' + xmashed + '</strong></a></td><td>' + xmasbrief + '</td><td><em>' + xmastime + '</em></td></tr>'].join('')
             }
             
-            if (diched != "" || diched != null) {
+            if (diched != "" && diched != null) {
             dic_content += [
             '<tr><td><a href="' + dicurl + '" target="_blank"><strong>' + diched + '</strong></a></td><td>' + dicbrief + '</td><td><em>' + dictime + '</em></td></tr>'].join('')
             }            
